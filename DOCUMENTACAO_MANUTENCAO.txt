@@ -1,0 +1,88 @@
+=============================================================================
+                  DOCUMENTAÇÃO E GUIA DE MANUTENÇÃO DO PROJETO
+=============================================================================
+
+Este documento serve como um guia definitivo para facilitar as futuras manutenções
+do aplicativo de Delivery. O sistema está dividido em FRONTEND (React) e 
+BACKEND (Node.js/Express + MongoDB).
+
+-----------------------------------------------------------------------------
+1. ARQUITETURA GERAL
+-----------------------------------------------------------------------------
+- O frontend roda em Vite + React na porta 5173 (http://localhost:5173).
+- O backend roda em Node.js com Express na porta 5000 (http://localhost:5000).
+- Todos os dados ficam salvos em um banco de dados MongoDB (URI e conexão ficam no arquivo backend/.env).
+- O frontend se comunica com o backend usando a biblioteca 'axios', configurada no arquivo 'frontend/src/lib/api.js'.
+
+
+-----------------------------------------------------------------------------
+2. ESTRUTURA DO FRONTEND (frontend/src)
+-----------------------------------------------------------------------------
+- /components: Contém blocos reutilizáveis como a Navbar.
+- /pages: Contém as telas principais do sistema:
+   => Home.jsx: Tela inicial. Puxa as Promoções (produtos com isPromotion = true) e mostra o CTA.
+   => Menu.jsx: Cardápio do cliente. Possui uma categoria "virtual" chamada "Promoções do Dia" que é introduzida no front e filtra os produtos marcados como promoção.
+   => Cart.jsx: Exibe carrinho lendo os dados da loja (store) global do Zustand.
+   => Checkout.jsx: Finalização de compra, opções de pagamento (Dinheiro, PIX, Cartão). Na opção Dinheiro, pede Troco.
+   => AdminDashboard.jsx: Coração da loja. Aba de Kanban (Pedidos) e Aba de Gerenciamento do Menu onde se cria categorias e produtos.
+
+- /store: Onde moram as variáveis globais (Zustand):
+   => cartStore.js: Gerencia os itens no carrinho, soma os valores persistindo no LocalStorage do navegador.
+   => authStore.js: Gerencia se o usuário está logado, guarda seu token JWT e salva suas informações.
+
+- O CSS é em grande parte modular, mas as regras e cores globais (Laranja, Creme, Fontes arredondadas Nunito) moram no arquivo 'index.css'. Se quiser mudar a cor de todo o site, mude as variáveis --primary-color no index.css.
+
+
+-----------------------------------------------------------------------------
+3. ESTRUTURA DO BACKEND (backend/src)
+-----------------------------------------------------------------------------
+- /auth: 'auth.js' cuida da criação e verificação do token JWT (JSON Web Token) usado no login. O middleware 'authenticate' bloqueia rotas para não logados.
+- /controllers: Aqui ditamos a Lógica de Negócio (ex: "orders.js", "plates.js"). O Controller recebe os pedaços da requisição do front, os organiza e envia para salvar.
+- /dataAccess: Lógica de Banco de Dados. Estes arquivos (ex: categories.js, users.js) têm as Queries puras de Mongo (insertOne, find, updateOne).
+- /routes: Liga a URL do navegador para a função do Controller (ex: router.post('/orders', orderController.createOrder)).
+
+
+-----------------------------------------------------------------------------
+4. FUNCIONALIDADES CHAVES & COMO MANUTENIR
+-----------------------------------------------------------------------------
+
+A) ADICIONANDO NOVOS CAMPOS NO PRODUTO 
+   (ex: Tamanho da porção ou Código de Barras)
+   1. Front: Em AdminDashboard.jsx, procure pelo estado `plateForm`. Adicione seu campo na inicialização (ex: barcode: '').
+   2. Front: Lá pro final do mesmo arquivo, clone um bloco de '<input>' HTML indicando o onChange para o novo campo.
+   3. Back: No backend/src/controllers/plates.js, nada precisa mudar se ele usar spread operator (req.body), mas garanta que o validation se existir, deixe o campo passar.
+
+B) FLUXO DO PAINEL "KANBAN" (PEDIDOS)
+   O admin vê 4 colunas: Recebido -> Em Preparo -> Saiu para Entrega -> Entregue.
+   - O order (Pedido) nasce no status "Recebido" ou "Pendente" dependendo da lógica do carrinho.
+   - Os pedidos são puxados usando polling a cada 30 segundos (setInterval no AdminDashboard).
+   - O campo "paymentStatus" ajuda o lojista a ver se um pedido PIX/Cartão foi pago. O lojista precisa clicar em "Confirmar Pagamento" para que o botão "Preparar" acenda.
+
+C) COMO FUNCIONAM AS PROMOÇÕES?
+   - O lojista, no Admin, clica "Ativar Promoção". Isso envia o booleano `isPromotion: true` pelo API.
+   - Além disso, envia o `originalPrice` (preço cortado) e o texto de impacto em `promoText`.
+   - Na 'Home.jsx', uma função pega TODOS os pratos do server, roda um `.filter(plate => plate.isPromotion === true)` e os exibe.
+   - No 'Menu.jsx', na hora de montar a lista de abas esquerdas (Categorias), fingimos que existe uma categoria com ID "promo" e nome "🔥 Promoções do Dia". Quando selecionada, roda o mesmo filter.
+
+
+-----------------------------------------------------------------------------
+5. COMANDOS ÚTEIS PARA START E DEPLOY
+-----------------------------------------------------------------------------
+RODAR LOCALMENTE (DEV)
+- Terminal 1 (Backend): cd backend && npm run start
+- Terminal 2 (Frontend): cd frontend && npm run dev
+
+POSSÍVEIS PROBLEMAS DE CÓDIGO E SOLUÇÕES
+1 - CORS Error no navegador: Significa que a porta do backend não autorizou requests da porta do frontend. Veja backend/src/index.js se o cors() está sendo usado corretamente.
+2 - Invalid Token / Auth Erros: Significa que a secret do JWT expirou ou mudou. Cheque a variavel JWT_SECRET no arquivo .env do backend.
+3 - Carrinho esvaziou sozinho: O 'cartStore' usa persistência de sessão. Se o localStorage for limpo ou incognito for usado, não dura entre abas.
+
+
+D) LOGICA DE FOTOS E IMAGENS
+   - O sistema NÃO salva arquivos de imagem em pastas (uploads/). 
+   - Ele converte a imagem para uma STRING BASE64 (texto longo) no frontend.
+   - Essa string é salva diretamente no MongoDB no campo `image`. 
+   - Vantagem: Facilita o deploy, pois não precisa de gestão de arquivos no disco.
+   - Cuidado: Se a imagem for muito pesada, pode deixar o banco lento. Por isso o AdminDashboard possui uma lógica de compressão via Canvas antes do envio.
+
+=== Dúvidas ou próximas implementações, consulte este guia ===

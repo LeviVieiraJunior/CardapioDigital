@@ -1,0 +1,204 @@
+/* ── Navbar ── */
+.navbar {
+  background-color: white;
+  border-bottom: 3px solid var(--primary-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  z-index: 1000;
+  box-shadow: 0 2px 20px rgba(255, 107, 43, 0.08);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Logo */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary-color), #FF8C42);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--secondary-color);
+  letter-spacing: -0.5px;
+}
+
+.logo-text span {
+  color: var(--primary-color);
+}
+
+/* Desktop nav links */
+.navbar-links {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.nav-link {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  padding: 0.45rem 1rem;
+  border-radius: var(--border-radius-full);
+  transition: all var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+  background-color: var(--primary-light);
+}
+
+.nav-link.active {
+  color: var(--primary-color);
+  background-color: var(--primary-light);
+}
+
+/* Remove old underline effect */
+.nav-link::after { display: none; }
+
+.admin-link {
+  color: var(--accent-color) !important;
+}
+.admin-link:hover,
+.admin-link.active {
+  background-color: var(--accent-light) !important;
+  color: #C47F00 !important;
+}
+
+/* Action icons */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.action-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  background-color: transparent;
+}
+
+.action-icon:hover {
+  color: var(--primary-color);
+  background-color: var(--primary-light);
+}
+
+.navbar-welcome {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-right: 0.5rem;
+}
+
+.navbar-welcome span {
+  color: var(--primary-color);
+  font-weight: 800;
+}
+
+.cart-icon { position: relative; }
+
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: linear-gradient(135deg, var(--primary-color), #FF8C42);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 900;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-full);
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(255,107,43,0.4);
+}
+
+/* Mobile toggle */
+.mobile-toggle {
+  display: none;
+  color: var(--text-primary);
+  width: 42px;
+  height: 42px;
+  border-radius: var(--border-radius-sm);
+  align-items: center;
+  justify-content: center;
+}
+.mobile-toggle:hover { background-color: var(--primary-light); }
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  background-color: white;
+  padding: var(--spacing-md);
+  box-shadow: 0 8px 30px rgba(255,107,43,0.12);
+  border-bottom: 2px solid var(--primary-light);
+  transform: translateY(-120%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+  z-index: 999;
+}
+
+.mobile-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.mobile-link {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  color: var(--text-secondary);
+}
+
+.mobile-link:hover,
+.mobile-link.active {
+  color: var(--primary-color);
+  background-color: var(--primary-light);
+}
+
+@media (max-width: 768px) {
+  .desktop-only { display: none; }
+  .mobile-toggle { display: flex; }
+  .page-content { padding-top: 72px; }
+}

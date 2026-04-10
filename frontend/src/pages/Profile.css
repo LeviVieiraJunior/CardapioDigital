@@ -1,0 +1,230 @@
+/* ── Profile Page ── */
+.profile-page {
+  padding-top: calc(80px + var(--spacing-xl));
+  padding-bottom: var(--spacing-2xl);
+}
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+
+/* ── Sidebar ── */
+.profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  position: sticky;
+  top: 90px;
+}
+
+.profile-card {
+  background: white;
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #FF8C42 100%);
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 900;
+  color: white;
+  margin: 0 auto var(--spacing-md);
+  box-shadow: 0 8px 28px rgba(255,107,43,0.35);
+}
+
+.profile-name {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--secondary-color);
+  margin-bottom: 2px;
+}
+
+.profile-email {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  word-break: break-all;
+  margin-bottom: 8px;
+}
+
+.profile-role {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-lg);
+  font-weight: 600;
+  background: var(--primary-light);
+  color: var(--primary-color);
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: var(--border-radius-full);
+}
+
+.logout-btn {
+  width: 100%;
+  margin-top: var(--spacing-sm);
+}
+
+/* ── LGPD Card ── */
+.lgpd-card {
+  background: #FFF5F5;
+  border: 1.5px solid rgba(231,76,60,0.2);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--border-radius-lg);
+}
+
+.lgpd-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.lgpd-header h3 {
+  font-size: 1rem;
+  color: var(--danger-color);
+}
+
+.lgpd-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.5;
+}
+
+.btn-text-danger {
+  color: var(--danger-color);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+}
+.btn-text-danger:hover { opacity: 0.75; }
+
+/* ── Orders History ── */
+.profile-content { flex: 1; }
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--secondary-color);
+  margin-bottom: var(--spacing-lg);
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.order-history-card {
+  background: white;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-fast);
+}
+
+.order-history-card:hover { box-shadow: var(--shadow-md); }
+
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--background-light);
+  border-bottom: 1px solid #EDE8E3;
+}
+
+.order-id {
+  font-weight: 900;
+  color: var(--secondary-color);
+  font-size: 1rem;
+}
+
+.order-date {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+.order-status-badge {
+  padding: 4px 14px;
+  border-radius: var(--border-radius-full);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: white;
+  white-space: nowrap;
+}
+
+.order-card-body {
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.order-items-minimal {
+  list-style: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.order-items-minimal li {
+  margin-bottom: 2px;
+}
+
+.order-total-info {
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.order-final-price {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--primary-color);
+  margin-top: 4px;
+}
+
+.empty-orders {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  background: white;
+  border-radius: var(--border-radius-lg);
+  color: var(--text-muted);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+  .profile-sidebar { position: static; }
+}

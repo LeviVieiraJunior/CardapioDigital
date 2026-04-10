@@ -1,0 +1,171 @@
+/* ── Auth Page ── */
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #FFF0E8 0%, #FFF8F3 50%, #FFF0E8 100%);
+  padding: var(--spacing-md);
+}
+
+.auth-container {
+  background: white;
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2xl);
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 20px 60px rgba(255,107,43,0.12), 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.auth-logo {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--primary-color), #FF8C42);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-md);
+  box-shadow: 0 8px 24px rgba(255,107,43,0.35);
+}
+
+.auth-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--secondary-color);
+  margin-bottom: var(--spacing-xs);
+}
+
+.auth-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Error */
+.auth-error {
+  background: rgba(231,76,60,0.08);
+  border: 1.5px solid var(--danger-color);
+  color: var(--danger-color);
+  padding: 0.65rem var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-md);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Form */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* LGPD Checkbox */
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--background-light);
+  border-radius: var(--border-radius-md);
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checkbox-group label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Footer */
+.auth-footer {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.btn-switch {
+  color: var(--primary-color);
+  font-weight: 800;
+  margin-left: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+
+.btn-switch:hover { text-decoration: underline; }
+
+/* ── Password Toggle ── */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper .input-field {
+  width: 100%;
+  padding-right: 3rem;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 0.9rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.eye-btn:hover { color: var(--primary-color); }
+
+/* ── Password Rules ── */
+.password-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--background-light);
+  border-radius: var(--border-radius-md);
+  padding: 0.7rem 1rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.rule-ok {
+  color: #2ECC71;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.rule-fail {
+  color: var(--danger-color);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* ── Link Termos ── */
+.link-termos {
+  color: var(--primary-color);
+  font-weight: 700;
+  text-decoration: underline;
+}

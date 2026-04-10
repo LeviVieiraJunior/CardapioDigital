@@ -1,0 +1,208 @@
+/* ── Menu Header ── */
+.menu-header {
+  background: linear-gradient(135deg, #FF6B2B 0%, #FF9F43 100%);
+  color: white;
+  padding: var(--spacing-xl) 0 calc(var(--spacing-xl) + 40px);
+  text-align: center;
+  position: relative;
+}
+
+.menu-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background-color: var(--background-light);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+.menu-title {
+  font-size: 2.4rem;
+  color: white;
+  margin-bottom: var(--spacing-xs);
+}
+
+.menu-desc {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.88);
+}
+
+/* ── Layout ── */
+.menu-container {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: var(--spacing-xl);
+  padding-bottom: var(--spacing-2xl);
+  padding-top: var(--spacing-md);
+}
+
+/* ── Category Nav ── */
+.categories-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  position: sticky;
+  top: 88px;
+}
+
+.category-btn {
+  text-align: left;
+  padding: 0.75rem var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.95rem;
+  background-color: white;
+  border: 2px solid transparent;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.category-btn:hover {
+  color: var(--primary-color);
+  border-color: var(--primary-light);
+  background-color: var(--primary-light);
+}
+
+.category-btn.active {
+  background: linear-gradient(135deg, var(--primary-color), #FF8C42);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(255,107,43,0.3);
+}
+
+/* ── Plates Grid ── */
+.plates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--spacing-lg);
+  align-content: start;
+}
+
+.plate-card {
+  background-color: white;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+}
+
+.plate-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.plate-img-wrapper {
+  height: 185px;
+  width: 100%;
+  overflow: hidden;
+  background: #FFF0E8;
+}
+
+.plate-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.plate-card:hover .plate-img { transform: scale(1.07); }
+
+.plate-info {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.plate-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+  color: var(--secondary-color);
+}
+
+.plate-description {
+  color: var(--text-secondary);
+  font-size: 0.87rem;
+  margin-bottom: var(--spacing-md);
+  flex: 1;
+  line-height: 1.5;
+}
+
+.plate-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.plate-price {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--primary-color);
+}
+
+.btn-add-cart {
+  background: linear-gradient(135deg, var(--primary-color), #FF8C42);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255,107,43,0.35);
+  transition: all var(--transition-fast);
+}
+
+.btn-add-cart:hover {
+  transform: scale(1.12);
+  box-shadow: 0 6px 18px rgba(255,107,43,0.45);
+}
+
+/* Loading / Empty */
+.loading-spinner {
+  text-align: center;
+  padding: 5rem 0;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.empty-category {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  background-color: white;
+  border-radius: var(--border-radius-lg);
+  color: var(--text-muted);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-container {
+    grid-template-columns: 1fr;
+  }
+  .categories-nav {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+  .category-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .plates-grid {
+    grid-template-columns: 1fr;
+  }
+}

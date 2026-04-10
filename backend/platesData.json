@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Tomato Basil Soup",
+    "price": "4.50",
+    "available": true,
+    "description": "Smooth tomato soup with fresh basil and cream.",
+    "ingredients": ["tomatoes", "basil", "cream", "garlic", "onion"],
+    "category": "Appetizer"
+  },
+  {
+    "name": "Bruschetta Trio",
+    "price": "5.25",
+    "available": true,
+    "description": "Toasted baguette with tomato, mushroom, and olive tapenade toppings.",
+    "ingredients": ["bread", "tomatoes", "mushrooms", "olives", "garlic"],
+    "category": "Appetizer"
+  },
+  {
+    "name": "Caesar Side Salad",
+    "price": "3.75",
+    "available": true,
+    "description": "Crisp romaine lettuce with Caesar dressing and croutons.",
+    "ingredients": ["lettuce", "croutons", "parmesan", "anchovy", "dressing"],
+    "category": "Side"
+  },
+  {
+    "name": "Garlic Bread",
+    "price": "2.99",
+    "available": true,
+    "description": "Oven-baked baguette slices brushed with garlic butter.",
+    "ingredients": ["bread", "garlic", "butter", "parsley"],
+    "category": "Side"
+  },
+  {
+    "name": "Mushroom Risotto",
+    "price": "10.95",
+    "available": false,
+    "description": "Creamy risotto with wild mushrooms and truffle oil.",
+    "ingredients": ["rice", "mushrooms", "parmesan", "wine", "broth"],
+    "category": "First"
+  },
+  {
+    "name": "Lobster Linguine",
+    "price": "18.99",
+    "available": true,
+    "description": "Linguine tossed with chunks of lobster in a garlic cream sauce.",
+    "ingredients": ["linguine", "lobster", "cream", "garlic", "parsley"],
+    "category": "First"
+  },
+  {
+    "name": "Roast Beef",
+    "price": "15.50",
+    "available": true,
+    "description": "Juicy roast beef with gravy and mashed potatoes.",
+    "ingredients": ["beef", "potatoes", "gravy", "herbs"],
+    "category": "Second"
+  },
+  {
+    "name": "Grilled Chicken with Veggies",
+    "price": "11.75",
+    "available": true,
+    "description": "Marinated chicken breast served with seasonal vegetables.",
+    "ingredients": ["chicken", "zucchini", "bell pepper", "olive oil"],
+    "category": "Second"
+  },
+  {
+    "name": "Vegetarian Burger",
+    "price": "9.25",
+    "available": true,
+    "description": "House-made patty with lettuce, tomato, and vegan mayo.",
+    "ingredients": ["beans", "lettuce", "tomato", "bun", "vegan mayo"],
+    "category": "Other"
+  },
+  {
+    "name": "Chocolate Mousse",
+    "price": "5.50",
+    "available": true,
+    "description": "Light and airy chocolate mousse topped with whipped cream.",
+    "ingredients": ["chocolate", "eggs", "cream", "sugar"],
+    "category": "Other"
+  }
+]
